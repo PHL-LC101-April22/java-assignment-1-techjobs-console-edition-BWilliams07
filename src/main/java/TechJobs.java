@@ -7,7 +7,6 @@ public class TechJobs {
 
     public static void main (String[] args) {
 
-        // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
         columnChoices.put("core competency", "Skill");
         columnChoices.put("employer", "Employer");
@@ -38,7 +37,6 @@ public class TechJobs {
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
-                    // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item);
                     }
@@ -99,12 +97,12 @@ public class TechJobs {
     }
 
 
-    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+    private static void printJobs(ArrayList<HashMap<String, String>> jobs) {
 
-        if (someJobs.size() > 0 ) {
+        if (jobs.size() > 0 ) {
 
 
-            for (HashMap<String, String> field : someJobs) {
+            for (HashMap<String, String> field : jobs) {
 
                 for(Map.Entry<String, String> data: field.entrySet()){
                     System.out.println(data.getKey() + ": "+data.getValue() );
@@ -120,16 +118,16 @@ public class TechJobs {
     public static ArrayList<HashMap<String, String>> findByValue(String searchTerm){
 
         ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
-        ArrayList<HashMap<String, String>> matchingItems = new ArrayList<>();
+        ArrayList<HashMap<String, String>> items = new ArrayList<>();
 
         for (HashMap<String,String> row: allJobs){
 
             for(Map.Entry<String, String> column: row.entrySet()){
                 if (column.getValue().toUpperCase().contains(searchTerm)){
-                    if(Objects.equals(matchingItems, row)){
+                    if(Objects.equals(items, row)){
                         continue;
                     }
-                    matchingItems.add(row);
+                    items.add(row);
                 }
             }
 
@@ -137,7 +135,7 @@ public class TechJobs {
 
         }
 
-        return matchingItems;
+        return items;
 
 
     }
