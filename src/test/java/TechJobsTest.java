@@ -10,15 +10,10 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by LaunchCode
- */
 public class TechJobsTest {
 
     private static ByteArrayOutputStream baos;
 
-    // set up an alternative output stream to capture output
-    // this needs to be done before every test so we don't contaminate test output
     @Before
     public void setUpOutputStream() {
         baos = new ByteArrayOutputStream();
@@ -26,8 +21,7 @@ public class TechJobsTest {
     }
 
     private static String runProgramWithInput(String input) {
-        Scanner in = new Scanner(input);
-        TechJobs.in = in;
+        TechJobs.in = new Scanner(input);
         TechJobs.main(null);
         return baos.toString();
     }
